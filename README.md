@@ -28,7 +28,7 @@ pip install -r requirements.txt
 ## 使用
 pypy etl-trans.py -h
 
-cd etl-time-consuming-transactions && nohup pypy etl-trans.py 2>&1 >/dev/null &
+cd etl-time-consuming-transactions && nohup pypy etl-trans.py -m 2>&1 >/dev/null &
 
 
 ## 保存到mysql的表结构
@@ -36,6 +36,9 @@ cd etl-time-consuming-transactions && nohup pypy etl-trans.py 2>&1 >/dev/null &
 create table long_transaction (
   id int primary key auto_increment, db varchar (50), cost_second int, start_time datetime, end_time datetime, bin_file varchar (20), start_pos bigint, end_pos bigint, querys longtext
 )
+
+## 注意
+1、从文件中获取pos，会出现kill掉进程后，文件内容为空的情况,启动时要观察下
 
 ## 参考
 
