@@ -26,10 +26,12 @@ pypy -m pip install -r requirements.txt
 
 #修改配置和设置binlog pos
 
+
 #查看参数
 
 pypy etl-trans.py -h
 
+#启动
 cd etl-time-consuming-transactions && nohup pypy etl-trans.py -m 2>&1 >/dev/null &
 
 
