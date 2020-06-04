@@ -289,6 +289,9 @@ def binlog_reading():
     except KeyboardInterrupt:
         log_file,log_pos = objredis.get_log_pos()
         logger.info("程序退出,当前同步位置 {0}:{1}".format(log_file,log_pos))
+    except GracefulExitException:
+        log_file,log_pos = objredis.get_log_pos()
+        logger.info("程序被kill,当前同步位置 {0}:{1}".format(log_file,log_pos))
     except Exception as e:
         log_file,log_pos = objredis.get_log_pos()
         logger.error("程序异常：{2},当前同步位置 {0}:{1}".format(log_file,log_pos,str(e)))
@@ -343,6 +346,16 @@ def init_parse():
     parser.add_argument('-m','--mysql', action='store_true', default=False, help='big trans save to mysql ,default save to log file')
     return parser
 
+class GracefulExitException(Exception):
+    @staticmethod
+    def sigterm_handler(signum, frame):
+        raise GracefulExitException()
+    pass
+
+def sig():
+    for sig in [signal.SIGINT, signal.SIGHUP, signal.SIGTERM, signal.SIGKILL]:
+        signal.signal(sig, GracefulExitException.sigterm_handler)
+        
 if __name__ == "__main__":
     parser = init_parse()
     args = parser.parse_args()
@@ -350,5 +363,6 @@ if __name__ == "__main__":
     logtoredis = args.redis
     savetomysql = args.mysql
     cnf=get_config(config)
+    sig()
     init_logging()
     binlog_reading()
