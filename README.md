@@ -5,8 +5,13 @@
 
 python 2.7
 
-mysql复制账号权限
+mysql（mariadb）
+
+复制账号权限
+
 grant select,replication slave,replication client on *.* to repl@''
+
+mariadb需要将binlog_annotate_row_events关闭
 
 pypy部署（可提高性能，建议该方式部署和执行脚本）
 
