@@ -11,6 +11,7 @@ import os
 import gc
 import redis
 import pymysql
+import signal
 from pymysqlreplication.event import QueryEvent, XidEvent
 from pymysqlreplication.row_event import WriteRowsEvent, UpdateRowsEvent, DeleteRowsEvent, TableMapEvent
 from pymysqlreplication import BinLogStreamReader
