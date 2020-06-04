@@ -231,7 +231,7 @@ def binlog_reading():
                     event_list.append(str(event).replace("'","''"))
             elif binlog_format == 'statement':
                 if isinstance(binlog_event, QueryEvent) and binlog_event.schema:
-                    event_list.append(binlog_event.query)
+                    event_list.append(str(binlog_event.query).replace("'","''"))
             # XidEvent事件为事务结束
             if isinstance(binlog_event, XidEvent):
                 endtime = binlog_event.timestamp
