@@ -10,7 +10,7 @@ python 2.7
 mariadb需要将 binlog_annotate_row_events 关闭
 
 
-#pypy部署（可提高性能，建议该方式部署和执行脚本）
+## pypy部署（可提高性能，建议该方式部署和执行脚本）
 
 yum -y install pypy-libs pypy pypy-devel
 
@@ -20,24 +20,24 @@ pypy get-pip.py
 
 pypy -m pip install -r requirements.txt
 
-#CPython部署
+## Python部署
 
 pip install -r requirements.txt
 
 
-#使用
+## 使用
 pypy etl-trans.py -h
 
 cd etl-time-consuming-transactions && nohup pypy etl-trans.py 2>&1 >/dev/null &
 
 
-#保存到mysql的表结构
+## 保存到mysql的表结构
 
 create table long_transaction (
   id int primary key auto_increment, db varchar (50), cost_second int, start_time datetime, end_time datetime, bin_file varchar (20), start_pos bigint, end_pos bigint, querys longtext
 )
 
-#参考
+## 参考
 
 https://github.com/noplay/python-mysql-replication
 
