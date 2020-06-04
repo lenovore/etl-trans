@@ -5,6 +5,7 @@ python 2.7
 
 pypy部署（可提高性能，建议该方式部署和执行脚本）
 yum -y install pypy-libs pypy pypy-devel
+
 wget https://bootstrap.pypa.io/get-pip.py
 pypy get-pip.py
 pypy -m pip install -r requirements.txt
