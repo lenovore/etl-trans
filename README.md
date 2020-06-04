@@ -18,14 +18,15 @@ curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 
 pypy get-pip.py
 
+git clone https://github.com/lenovore/etl-time-consuming-transactions.git
+
+cd etl-time-consuming-transactions
+
 pypy -m pip install -r requirements.txt
 
-## Python部署
+#修改配置和设置binlog pos
 
-pip install -r requirements.txt
-
-
-## 使用
+#查看参数
 pypy etl-trans.py -h
 
 cd etl-time-consuming-transactions && nohup pypy etl-trans.py -m 2>&1 >/dev/null &
