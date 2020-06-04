@@ -5,6 +5,8 @@
 
 python 2.7
 
+mysql复制账号权限
+grant select,replication slave,replication client on *.* to repl@''
 
 pypy部署（可提高性能，建议该方式部署和执行脚本）
 
