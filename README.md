@@ -21,6 +21,13 @@ CPython部署
 
 pip install -r requirements.txt
 
+
+使用
+
+pypy etl-trans.py -h
+
+cd etl-time-consuming-transactions && nohup pypy etl-trans.py 2>&1 >/dev/null &
+
 参考
 
 https://github.com/noplay/python-mysql-replication
