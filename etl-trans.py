@@ -289,10 +289,10 @@ def binlog_reading():
                 gc.collect()
     except KeyboardInterrupt:
         log_file,log_pos = objredis.get_log_pos()
-        logger.info("程序退出,当前同步位置 {0}:{1}".format(log_file,log_pos))
+        logger.error("程序退出,当前同步位置 {0}:{1}".format(log_file,log_pos))
     except GracefulExitException:
         log_file,log_pos = objredis.get_log_pos()
-        logger.info("程序被kill,当前同步位置 {0}:{1}".format(log_file,log_pos))
+        logger.error("程序被kill,当前同步位置 {0}:{1}".format(log_file,log_pos))
     except Exception as e:
         log_file,log_pos = objredis.get_log_pos()
         logger.error("程序异常：{2},当前同步位置 {0}:{1}".format(log_file,log_pos,str(e)))
