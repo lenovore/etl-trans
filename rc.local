@@ -1,4 +1,4 @@
 #!/bin/bash
 
-#cd /data/etl-time-consuming-transactions && nohup pypy etl-trans.py -r -m 2>&1 >/dev/null &
-nohup /data/etl-time-consuming-transactions/start.sh 2>&1 >/dev/null &
+#cd /data/etl-trans && nohup pypy etl-trans.py -r -m 2>&1 >/dev/null &
+nohup /data/etl-trans/start.sh 2>&1 >/dev/null &
