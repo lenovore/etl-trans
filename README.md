@@ -32,7 +32,8 @@ pypy -m pip install -r requirements.txt
 pypy etl-trans.py -h
 
 #启动
-cd etl-time-consuming-transactions && nohup pypy etl-trans.py -m 2>&1 >/dev/null &
+
+nohup /data/etl-time-consuming-transactions/start.sh 2>&1 >/dev/null &
 
 
 ## 保存到mysql的表结构
