@@ -255,8 +255,8 @@ def binlog_reading():
                             )
                             '''
                             sql = """
-                                insert into long_transaction(db,cost_second,start_time,end_time,bin_file,start_pos,end_pos,querys)
-                                values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')
+                                insert into long_transaction(db,cost_second,start_time,end_time,bin_file,start_pos,end_pos,querys,host)
+                                values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}')
                                 """.format(
                                     schema,
                                     str(transtime),
@@ -265,7 +265,8 @@ def binlog_reading():
                                     stream.log_file,
                                     begin_pos,
                                     stream.log_pos,
-                                    ','.join(event_list)
+                                    ','.join(event_list),
+                                    cnf['save_server']['master_host']
                                 )
                             f.execute(sql)
                         pass
