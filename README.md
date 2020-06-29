@@ -18,9 +18,9 @@ curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 
 pypy get-pip.py
 
-git clone https://github.com/lenovore/etl-time-consuming-transactions.git
+git clone https://github.com/lenovore/etl-trans.git
 
-cd etl-time-consuming-transactions
+cd etl-trans
 
 pypy -m pip install -r requirements.txt
 
@@ -33,17 +33,29 @@ pypy etl-trans.py -h
 
 #启动
 
-nohup /data/etl-time-consuming-transactions/start.sh 2>&1 >/dev/null &
+nohup /etl-trans/start.sh 2>&1 >/dev/null &
 
 
 ## 保存到mysql的表结构
 
-create table long_transaction (
-  id int primary key auto_increment, db varchar (50), cost_second int, start_time datetime, end_time datetime, bin_file varchar (20), start_pos bigint, end_pos bigint, querys longtext
-)
+create table `long_transaction` (
+  `id` int(11) not null auto_increment,
+  `db` varchar(50) default null,
+  `cost_second` int(11) default null,
+  `start_time` datetime default null,
+  `end_time` datetime default null,
+  `bin_file` varchar(20) default null,
+  `start_pos` bigint(20) default null,
+  `end_pos` bigint(20) default null,
+  `querys` longtext default null,
+  `create_time` datetime default current_timestamp(),
+  `host` varchar(50),
+  primary key (`id`)
+) engine=innodb
+
 
 ## 注意
-1、从文件中获取pos，会出现kill掉进程后，文件内容为空的情况(不要使用kill -9), 启动时要观察下
+1、从文件中获取pos，会出现kill掉进程后，文件内容为空的情况(不要使用kill -9), 所以最好使用redis来存取pos
 
 ## 参考
 
