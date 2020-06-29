@@ -25,7 +25,7 @@ cd etl-trans
 pypy -m pip install -r requirements.txt
 
 #修改配置和设置binlog pos
-...
+
 
 #查看参数
 
